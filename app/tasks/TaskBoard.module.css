@@ -1,0 +1,97 @@
+/* Styles for TaskBoard only (the board view). Colors come from the variables
+   in globals.css, so dark mode still works. */
+
+/* The three columns side by side. "repeat(3, 1fr)" makes three equal-width
+   columns; "align-items: start" lets each column be only as tall as its cards. */
+.board {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  align-items: start;
+  padding-bottom: 64px;
+}
+
+/* On narrow phone screens, stack the columns on top of each other instead. */
+@media (max-width: 640px) {
+  .board {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* One column: its heading and cards stacked with a gap, on a faint background
+   so the columns read as separate lanes. */
+.column {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 12px;
+  border-radius: 12px;
+  background: var(--surface);
+}
+
+/* The column title, e.g. "In progress (1)". The count in brackets is softer. */
+.columnHeading {
+  font-size: 0.9375rem;
+}
+
+.columnHeading span {
+  color: var(--muted);
+  font-weight: 400;
+}
+
+/* "Nothing here." in an empty column. */
+.empty {
+  font-size: 0.875rem;
+  color: var(--muted);
+}
+
+/* One task card: a bordered box on the page background, so it stands out from
+   the column's own background. Contents stack top to bottom. */
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 14px 16px;
+  background: var(--background);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+}
+
+/* The task name. */
+.title {
+  font-size: 1rem;
+}
+
+/* The link inside the task name: underline it when the mouse is over it, so
+   it's clear it can be clicked. */
+.titleLink:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* A visible outline when someone reaches the link with the Tab key. */
+.titleLink:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* "Blocked: Waiting on the grocery list" under the status, small and red. */
+.reason {
+  font-size: 0.8125rem;
+  color: var(--blocked-fg);
+}
+
+/* Priority and assignee side by side. */
+.meta {
+  display: flex;
+  gap: 24px;
+  font-size: 0.875rem;
+}
+
+/* The small grey labels ("Priority", "Assignee") above each value. */
+.meta dt {
+  font-size: 0.75rem;
+  color: var(--muted);
+}

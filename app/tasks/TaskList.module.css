@@ -1,0 +1,160 @@
+/* Styles for TaskList only (the list view). Colors come from the variables in
+   globals.css, so dark mode still works. */
+
+/* The whole list: no bullet points, rows stacked with a small gap, and room
+   before the footer. */
+.list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding-bottom: 64px;
+}
+
+/* One row, laid out left to right:
+   dot | title | status | priority | due date | actions.
+   "grid-template-columns" sets the widths: the dot is 10px, the title takes
+   all the spare room (1fr), and the rest take only what they need (auto).
+   "cursor: grab" shows a hand, hinting the row can be dragged. */
+.row {
+  display: grid;
+  grid-template-columns: 10px 1fr auto auto auto auto;
+  align-items: center;
+  gap: 16px;
+  padding: 12px 16px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  cursor: grab;
+}
+
+/* The status dot: a small circle (a square with fully rounded corners). */
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+/* One dot color per status, using the same colors as the status badges. */
+.todo {
+  background: var(--todo-fg);
+}
+
+.doing {
+  background: var(--doing-fg);
+}
+
+.done {
+  background: var(--done-fg);
+}
+
+.blocked {
+  background: var(--blocked-fg);
+}
+
+/* The title cell: the title with the blocked reason (if any) underneath.
+   "min-width: 0" lets a long title wrap instead of pushing the row wider. */
+.titleCell {
+  min-width: 0;
+}
+
+/* "Blocked: Waiting on the grocery list" under the title, small and red. */
+.reason {
+  margin-top: 2px;
+  font-size: 0.8125rem;
+  color: var(--blocked-fg);
+}
+
+/* The task name. "cursor: text" hints that it can be edited (double-click). */
+.title {
+  font-weight: 600;
+  cursor: text;
+}
+
+/* The edit form takes the title's place in the row. */
+.editForm {
+  display: flex;
+}
+
+/* The text box for editing a title: same font as the page, full width. */
+.editInput {
+  flex: 1;
+  font: inherit;
+  font-weight: 600;
+  padding: 4px 8px;
+  border: 1px solid var(--accent);
+  border-radius: 6px;
+  background: var(--background);
+  color: var(--foreground);
+}
+
+/* Priority and due date: smaller, softer text. "nowrap" keeps each on one line. */
+.priority,
+.due {
+  font-size: 0.875rem;
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+/* The View / Edit / Delete group, side by side. */
+.actions {
+  display: flex;
+  gap: 6px;
+}
+
+/* One small action (the View link and the two buttons share this look).
+   "font: inherit" makes buttons use the page font instead of the browser's. */
+.action {
+  font: inherit;
+  font-size: 0.8125rem;
+  padding: 3px 10px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--background);
+  color: var(--foreground);
+  cursor: pointer;
+}
+
+/* Slightly highlight an action when the mouse is over it. */
+.action:hover {
+  border-color: var(--muted);
+}
+
+/* A visible outline when an action is reached with the Tab key. */
+.action:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* The Edit button is faded while that row is already being edited. */
+.action:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Delete uses the "Blocked" red so it stands out as the risky action. */
+.danger {
+  color: var(--blocked-fg);
+}
+
+/* On narrower screens: dot, title and status on the first line, then
+   priority and due date, then the actions, so nothing gets squashed.
+   "grid-column: 2 / -1" makes an item span from column 2 to the end. */
+@media (max-width: 720px) {
+  .row {
+    grid-template-columns: 10px 1fr auto;
+    row-gap: 6px;
+  }
+
+  .priority {
+    grid-column: 2;
+  }
+
+  .due {
+    grid-column: 3;
+  }
+
+  .actions {
+    grid-column: 2 / -1;
+  }
+}

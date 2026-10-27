@@ -1,0 +1,77 @@
+/* Styles for AddTaskForm only. Colors come from the variables in globals.css,
+   so dark mode still works. */
+
+/* The form: title box, name picker and button in a row. "flex-wrap" lets them
+   move onto extra lines on narrow phone screens. */
+.form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 24px;
+}
+
+/* The shared look of the title box and the name picker. "font: inherit" makes
+   them use the page font instead of the browser's default. */
+.input,
+.select {
+  font: inherit;
+  font-size: 0.9375rem;
+  padding: 8px 12px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--background);
+  color: var(--foreground);
+}
+
+/* The title box takes all the spare width, but never less than 200px. */
+.input {
+  flex: 1 1 200px;
+}
+
+/* A visible outline when the box or picker is in use. */
+.input:focus-visible,
+.select:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+}
+
+/* The "Add task" button: filled with the accent color. */
+.button {
+  font: inherit;
+  font-weight: 600;
+  padding: 8px 18px;
+  border: none;
+  border-radius: 8px;
+  background: var(--accent);
+  color: var(--on-accent);
+  cursor: pointer;
+}
+
+/* Faded and not clickable while disabled (empty title, or saving). */
+.button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* A visible outline when the button is reached with the Tab key. */
+.button:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* The error message: its own full-width line, in the "Blocked" red. */
+.error {
+  flex-basis: 100%;
+  font-size: 0.875rem;
+  color: var(--blocked-fg);
+}
+
+/* Text that's hidden on screen but still read out by screen readers. */
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}

@@ -1,0 +1,85 @@
+/* Styles for the /tasks page and its controls (the filter, sort and view
+   buttons). Next.js renames each class (e.g. ".option" becomes something like
+   ".page-module__x1y2__option"), so none of these can clash with classes
+   elsewhere. The list and board have their own files: TaskList.module.css and
+   TaskBoard.module.css. Colors come from the variables in globals.css, so dark
+   mode still works. */
+
+/* The "All tasks" heading, with space above and below. */
+.heading {
+  font-size: clamp(1.75rem, 5vw, 2.5rem);
+  letter-spacing: -0.02em;
+  padding: 48px 0 24px;
+}
+
+/* The three rows of buttons above the tasks, stacked with a little space. */
+.controls {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+/* One row of buttons with its label in front. "flex-wrap" lets the buttons
+   move onto a second line on narrow phone screens. */
+.group {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+/* The small grey label at the start of each row ("Filter", "Sort", "View").
+   A fixed width keeps the three rows of buttons lined up. */
+.groupLabel {
+  width: 48px;
+  font-size: 0.75rem;
+  color: var(--muted);
+}
+
+/* An ordinary (not picked) button: outlined pill. "font: inherit" makes it
+   use the page font instead of the browser's default button font. */
+.option {
+  font: inherit;
+  font-size: 0.875rem;
+  padding: 4px 14px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--background);
+  color: var(--foreground);
+  cursor: pointer;
+}
+
+/* Slightly highlight a button when the mouse is over it. */
+.option:hover {
+  border-color: var(--muted);
+}
+
+/* A visible outline when someone reaches a button with the Tab key. */
+.option:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* The picked button: filled with the accent color so it clearly stands out. */
+.active,
+.active:hover {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--on-accent);
+  font-weight: 600;
+}
+
+/* The "Couldn't rename / delete" message above the tasks, in the "Blocked" red. */
+.error {
+  margin-bottom: 16px;
+  font-size: 0.875rem;
+  color: var(--blocked-fg);
+}
+
+/* The "No tasks match this filter." message, with room before the footer. */
+.empty {
+  padding-bottom: 64px;
+  font-size: 0.875rem;
+  color: var(--muted);
+}

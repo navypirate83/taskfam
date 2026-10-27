@@ -1,0 +1,86 @@
+/* Styles for StatusPicker only. Colors come from the variables in globals.css,
+   so dark mode still works. */
+
+/* The dropdown and (when open) the reason box, stacked with a small gap. */
+.picker {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+}
+
+/* The status dropdown, shaped like the status badges (a rounded pill).
+   "font: inherit" makes it use the page font instead of the browser's. */
+.select {
+  font: inherit;
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 2px 8px;
+  border: none;
+  border-radius: 999px;
+  cursor: pointer;
+}
+
+/* A visible outline when the dropdown is reached with the Tab key. */
+.select:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* One color per status, matching the badges elsewhere. */
+.todo {
+  background: var(--todo-bg);
+  color: var(--todo-fg);
+}
+
+.doing {
+  background: var(--doing-bg);
+  color: var(--doing-fg);
+}
+
+.done {
+  background: var(--done-bg);
+  color: var(--done-fg);
+}
+
+.blocked {
+  background: var(--blocked-bg);
+  color: var(--blocked-fg);
+}
+
+/* The reason box: text box and two buttons in a row, wrapping if narrow. */
+.reasonForm {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+/* The "What's blocking it?" text box. */
+.reasonInput {
+  font: inherit;
+  font-size: 0.875rem;
+  padding: 4px 8px;
+  border: 1px solid var(--blocked-fg);
+  border-radius: 6px;
+  background: var(--background);
+  color: var(--foreground);
+  min-width: 180px;
+}
+
+/* The small Save and Cancel buttons. */
+.button {
+  font: inherit;
+  font-size: 0.8125rem;
+  padding: 3px 10px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--background);
+  color: var(--foreground);
+  cursor: pointer;
+}
+
+/* Faded and not clickable while disabled (e.g. no reason typed yet). */
+.button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
